@@ -1,0 +1,22 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @user.name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @user.email %>
+</p>
+
+<p>
+  <% if @user.profile_image.present? %>
+    <%= image_tag @user.profile_image.variant(resize: "100x100") %>
+  <% else %>
+  	<%= image_tag("default-image.jpg", style:"height: 100px")%>
+  <% end %>
+</p>
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>

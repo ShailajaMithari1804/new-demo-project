@@ -1,0 +1,8 @@
+:schedule:
+  user_worker:
+    cron: '0 * * * * *'   # Runs once per minute
+    class: UsersWorker
+
+  # welcome_email:
+  # cron: '0 * * * * *'
+  # class: WelcomeEmail 

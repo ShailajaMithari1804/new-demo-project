@@ -7,9 +7,9 @@
 
 <h1>Users</h1>
 <br>
-<%= link_to 'New User', new_user_path %>
-
-<table>
+<h2><%= link_to 'New User', new_user_path %></h2>
+<br>
+<table id="users">
   <thead>
     <tr>
       <th><%= link_to "Name", :sort => "name"%></th>
@@ -19,6 +19,7 @@
   </thead>
 
   <tbody>
+
     <% @users.each do |user| %>
       <tr>
         <td><%= user.name %></td>
@@ -30,5 +31,10 @@
     <% end %>
   </tbody>
 </table>
-
+<br>
+<div class="center">
+  <div class="pagination">
+    <a><%= will_paginate @users%></a>
+  </div>
+</div>
 

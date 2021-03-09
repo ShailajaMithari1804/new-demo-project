@@ -1,20 +1,21 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[ show edit update destroy ]
-
   # GET /users or /users.json
   def index
-
     if params[:search]
-      @users = User.where("name LIKE ?", "%#{params[:search]}%")
+      @users = User.where("name LIKE ?", "%#{params[:search]}%").paginate(:page => params[:page], :per_page => 10)
     elsif 
-      @users = User.order(params[:sort])
+      @users = User.order(params[:sort]).paginate(:page => params[:page], :per_page => 10)
     else
-      @users = User.all
+      @users = User.page(params[:page]).paginate(:page => params[:page], :per_page => 10)
     end
   end
 
   # GET /users/1 or /users/1.json
   def show
+    # @user = User.where(id: user_params[:id]).select(:id, :name, :email, :profile_image)
+    # UsersWorker.perform_async(@user.last.name, 5)
+    # render json: {data: @user}
   end
 
   # GET /users/new
@@ -33,10 +34,8 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save
         format.html { redirect_to @user, notice: "User was successfully created." }
-        format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -46,10 +45,8 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.update(user_params)
         format.html { redirect_to @user, notice: "User was successfully updated." }
-        format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -59,7 +56,6 @@ class UsersController < ApplicationController
     @user.destroy
     respond_to do |format|
       format.html { redirect_to users_url, notice: "User was successfully destroyed." }
-      format.json { head :no_content }
     end
   end
 
@@ -72,5 +68,6 @@ class UsersController < ApplicationController
     # Only allow a list of trusted parameters through.
     def user_params
       params.require(:user).permit(:name, :email, :profile_image)
+      # params.permit(:id)
     end
 end

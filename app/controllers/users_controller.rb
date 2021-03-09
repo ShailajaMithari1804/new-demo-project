@@ -13,9 +13,6 @@ class UsersController < ApplicationController
 
   # GET /users/1 or /users/1.json
   def show
-    # @user = User.where(id: user_params[:id]).select(:id, :name, :email, :profile_image)
-    # UsersWorker.perform_async(@user.last.name, 5)
-    # render json: {data: @user}
   end
 
   # GET /users/new
@@ -33,6 +30,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
+        # UserMailer.welcome_email(@user).deliver_now
         format.html { redirect_to @user, notice: "User was successfully created." }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -68,6 +66,5 @@ class UsersController < ApplicationController
     # Only allow a list of trusted parameters through.
     def user_params
       params.require(:user).permit(:name, :email, :profile_image)
-      # params.permit(:id)
     end
 end

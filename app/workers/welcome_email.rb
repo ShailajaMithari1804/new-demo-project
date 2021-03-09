@@ -4,9 +4,7 @@ require 'sidekiq-scheduler'
 class WelcomeEmail
   include Sidekiq::Worker
 
-  def run
-    @user = user.last
-
-    mail to: @user.email
+  def perform
+    UserMailer.welcome_email().deliver
   end
 end

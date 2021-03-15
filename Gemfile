@@ -3,6 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.0.0'
 
+gem 'spring'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.3'
 # Use sqlite3 as the database for Active Record
@@ -30,6 +31,7 @@ gem 'sidekiq-scheduler' #job-scheduler
 gem 'actionmailer'
 gem 'will_paginate' #pagination
 # gem 'image_processing', '~> 1.2'
+gem 'rack-timeout', '0.3.2'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
@@ -49,7 +51,6 @@ group :development do
   gem 'listen', '~> 3.3'
   gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master' #generates data at random 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
 end
 
 group :test do

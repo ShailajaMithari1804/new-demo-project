@@ -1,4 +1,6 @@
 :schedule:
+  :concurrency: 1
+  
   user_worker:
     cron: '0 * * * * *'   # Runs once per minute
     class: UsersWorker

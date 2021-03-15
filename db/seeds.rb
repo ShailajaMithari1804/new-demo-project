@@ -15,6 +15,6 @@ if User.count.zero?
       name: Faker::Name.name_with_middle,
       email: Faker::Internet.free_email
     )
-    u.profile_image.(File.open('/home/bacancy/Documents/sites/new-demo-project/app/assets/images/default-image.jpg'))
+    u.profile_image.(File.open('/Documents/poc/bacancy/sites/new-demo-project/app/assets/images/default-image.jpg'))
   end
 end

@@ -4,5 +4,5 @@
     class: UsersWorker
 
   welcome_email:
-    cron: '0 * * * * *'   # Runs once per minute
+    cron: '0 10 * * 1'   # Runs once on every monday at 10:00am
     class: WelcomeEmail

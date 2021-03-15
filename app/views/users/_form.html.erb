@@ -1,3 +1,4 @@
+<div class="body">
 <%= form_with(model: user) do |form| %>
   <% if user.errors.any? %>
     <div id="error_explanation">
@@ -13,7 +14,7 @@
 
   <div class="field">
     <%= form.label :name %>
-    <%= form.text_field :name %>
+    <%= form.text_field :name%>
   </div>
 
   <div class="field">
@@ -30,3 +31,4 @@
     <%= form.submit %>
   </div>
 <% end %>
+</div>
